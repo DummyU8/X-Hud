@@ -14,7 +14,12 @@
 # {HEALTH} : Shows Player's current health
 # {MAXHEALTH} : Shows Player's max health
 
-Messages:
+#Choose whether factions support will be enabled in the hud
+enable-faction-support: true
+#Choose which faction plugin to work with (factionspro, factionsunlimited)
+faction-plugin: factionspro
+
+messages:
   - "§l§bX-Hud"
   - "§l§cX-Hud"
   - "§l§aX-Hud"
