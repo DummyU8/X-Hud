@@ -43,6 +43,11 @@ class Main extends PluginBase implements Listener{
     }
     
     public function economy(){
+        if($this->getConfig()->get("enable-economy-support") == false){
+            $this->money = null
+            $this->getLogger()->info(TextFormat::RED . "Disabling economy support!");
+            return false;
+        }
         if($this->getConfig()->get("economy-plugin") == "economyapi"){
             $this->money = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
             $this->getLogger()->info(TextFormat::GREEN . "Selected Economy Plugin: EconomyAPI");
