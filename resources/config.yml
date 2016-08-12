@@ -18,6 +18,8 @@
 enable-faction-support: true
 #Choose which faction plugin to work with (factionspro, factionsunlimited)
 faction-plugin: factionspro
+#Choose whether economy support will be enabled in the hud
+enable-economy-support: true
 #Choose which economy plugin to work with (economyapi, economyplus)
 economy-plugin: economyapi
 
