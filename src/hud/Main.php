@@ -23,7 +23,7 @@ class Main extends PluginBase implements Listener{
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new Task($this), 20);
-        $this->money = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        $this->economy();
         if($this->getConfig()->get("enable-faction-support") == false){
             $this->factions = null;
         }
@@ -40,6 +40,24 @@ class Main extends PluginBase implements Listener{
         }
         $this->count = count($this->getConfig()->get("messages"));
         $this->hudOff = new Config($this->getDataFolder() . "hudOff.yml",Config::YAML);
+    }
+    
+    public function economy(){
+        if($this->getConfig()->get("economy-plugin") == "economyapi"){
+            $this->money = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+            $this->getLogger()->info(TextFormat::GREEN . "Selected Economy Plugin: EconomyAPI");
+            return true;
+        }
+        else if($this->getConfig()->get("economy-plugin") == "economyplus"){
+            $this->money = $this->getServer()->getPluginManager()->getPlugin("EconomyPlus");
+            $this->getLogger()->info(TextFormat::GREEN . "Selected Economy Plugin: EconomyPlus");
+            return true;
+        }
+        $this->getLogger()->error(TextFormat::RED . "Unknown Economy Plugin! Disabling economy support!");
+        $this->getConfig()->set("enable-economy-support", false);
+        $this->getConfig()->save();
+        $this->money = null;
+        return false;
     }
     
     public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
