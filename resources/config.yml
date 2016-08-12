@@ -18,6 +18,8 @@
 enable-faction-support: true
 #Choose which faction plugin to work with (factionspro, factionsunlimited)
 faction-plugin: factionspro
+#Choose which economy plugin to work with (economyapi, economyplus)
+economy-plugin: economyapi
 
 messages:
   - "§l§bX-Hud"
